@@ -4,3 +4,4 @@ Once the Axolotl env is set up, execute one of the sh scripts which will use the
 is {input} {instruction} {output}. The latter allows context as input and QA happens on the context with Question as instruction. 
 Since we are performing Lora optimizations, adapter files are created and needs to be merged with original model file using the merge-lora command which looks like 
 **axolotl merge-lora config/basic_config_qa.yml --lora-model-dir="outputs/TinyLlama-1.1B-Chat-v1.0_qa"**
+Once the model is merged, it is save in the outputs folder at specified path and used by the Python files for inference. These python files execute simple test cases on the fine tuned models to check the correctness of tuning. You can also visit the dataset hugging face page to select some sample texts and test the model
