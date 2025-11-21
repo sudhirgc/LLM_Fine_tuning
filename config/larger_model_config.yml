@@ -1,0 +1,37 @@
+base_model: microsoft/Phi-3-mini-128k-instruct
+model_type: Phi3ForCausalLM
+tokenizer_type: LlamaTokenizer
+
+datasets:
+  - path: jaydenccc/AI_Storyteller_Dataset
+    type:
+      system_prompt: "You are an expert Storyteller. Create story from the supplied instruction"
+      field_system: system
+      field_instruction: synopsis
+      field_output: short_story
+      format: "<|user|>\n {instruction} <|end|>\n <|assistant|>"
+      no_input_format: "<|user|>\n {instruction} <|end|>\n <|assistant|>"
+
+output_dir: ./outputs/Phi-3-mini-128k-instruct_Story_Teller
+
+sequence_len: 4096
+bf16: auto
+tf32: false
+
+adapter: lora
+lora_r: 8
+lora_alpha: 16
+lora_dropout: 0.05
+lora_target_linear: true
+
+gradient_accumulation_steps: 4
+micro_batch_size: 1
+num_epochs: 4
+optimizer: adamw_bnb_8bit
+lr_scheduler: cosine
+learning_rate: 0.0002
+
+gradient_checkpointing: true
+
+logging_steps: 1
+load_in_8bit: false
