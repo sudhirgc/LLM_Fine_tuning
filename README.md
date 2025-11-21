@@ -1,0 +1,6 @@
+This repository contains resources for training LLM locally on machine with consumer grade GPU. The respository contains yml config files used with Axolotl. Installating of Axolotl is needed with flash attention and Deepspeed. Installation instructions for Axolotl are beyond the scope of this 
+project since it varies across GPU, Cuda, pyTorch, Python versions. The config is tested to work with 5070 Ti GPU with Cuda 12.8, Pytorch 2.8, Python - 3.12 however it required considerable tweaks to make the set up work. 
+Once the Axolotl env is set up, execute one of the sh scripts which will use the apporpriate config yml file to start the training. The training is performed on 2 different models (varied by param sizes) and with 2 different themes/ dataset. One type of data set is {instruction} {output} and another one 
+is {input} {instruction} {output}. The latter allows context as input and QA happens on the context with Question as instruction. 
+Since we are performing Lora optimizations, adapter files are created and needs to be merged with original model file using the merge-lora command which looks like 
+**axolotl merge-lora config/basic_config_qa.yml --lora-model-dir="outputs/TinyLlama-1.1B-Chat-v1.0_qa"**
